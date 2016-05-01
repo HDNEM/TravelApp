@@ -1,16 +1,24 @@
-﻿
-            <p>Getting started..</p>
+﻿@model Core_MVC6.Models.Trip
 
-            <form>
-                <div>
-                    <label>Date</label>
-                    <input />
-                </div>
-                <div>
-                    <label>Location</label>
-                    <input />
-                </div>
-                <div><input type="submit" value="Add" /></div>
-            </form>
-
-
+<p>Getting started..</p>
+@ViewBag.Message
+<form>
+    <div>
+        <label>Date</label>
+        <input />
+    </div>
+    <div>
+        <label>Location</label>
+        <input />
+    </div>
+    <div><input type="submit" value="Add" /></div>
+</form>
+<div>
+    <p>
+        <div>Trip ID: @ViewBag.ID</div>
+            <div>Trip name: @ViewBag.Name</div>
+            <div>Date Created: @ViewBag.CreatedDate</div>
+            <div>User Name: @ViewBag.UserName</div>
+            <div>Trip Stops: @ViewBag.Stops</div>
+    </p>
+</div>
