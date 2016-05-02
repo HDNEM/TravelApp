@@ -1,7 +1,5 @@
-﻿@model Core_MVC6.Models.Trip
+﻿<p>Getting started.</p>
 
-<p>Getting started..</p>
-@ViewBag.Message
 <form>
     <div>
         <label>Date</label>
@@ -13,12 +11,22 @@
     </div>
     <div><input type="submit" value="Add" /></div>
 </form>
+<br />
+<h2>Trips:</h2>
 <div>
-    <p>
-        <div>Trip ID: @ViewBag.ID</div>
-            <div>Trip name: @ViewBag.Name</div>
-            <div>Date Created: @ViewBag.CreatedDate</div>
-            <div>User Name: @ViewBag.UserName</div>
-            <div>Trip Stops: @ViewBag.Stops</div>
-    </p>
+    @{
+        foreach (var trip in ViewBag.test)
+        {
+            <div>
+                @trip.Name;
+                <ul>
+                    @foreach (var stop in trip.Stops)
+                    {
+                        <li>@stop.Name;</li>
+                    }
+                </ul>
+            </div>
+
+        }
+    }
 </div>

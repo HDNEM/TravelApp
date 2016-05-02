@@ -3,33 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
-using Core_MVC6.Models;
+using TravelApp.Models;
+using Microsoft.Data.Entity;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Core_MVC6.Controllers
+namespace TravelApp.Controllers
 {
     public class HomeController : Controller
     {
+        private TripContext db = new TripContext();
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.sampleTrip = new Trip {
-                ID = 1,
-                Name = "Trip 1",
-                CreatedDate = DateTime.Now,
-                UserName = "Hoan",
-                Stops = null
-            };
-            ViewBag.Message = "Sample Trip";
+            var Trips = db.Trips.Include(a => a.Stops);
+            ViewBag.test = Trips;
             return View();
         }
-
         public IActionResult About()
         {
             return View();
         }
-
         public IActionResult Contact()
         {
             return View();
