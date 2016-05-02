@@ -17,8 +17,10 @@ namespace TravelApp.Controllers
         public IActionResult Index()
         {
             var Trips = db.Trips.Include(a => a.Stops);
-            ViewBag.test = Trips;
-            return View();
+            //ViewBag.test = Trips;
+            var TripRepo = new TripsRepository(db);
+            //ViewBag.test = TripRepo;
+            return View(TripRepo.GetAllTrips());
         }
         public IActionResult About()
         {

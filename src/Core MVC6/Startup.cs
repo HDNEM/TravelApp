@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Data.Entity;
 using TravelApp.Models;
+using AutoMapper;
+using Core_MVC6.Models;
+using Core_MVC6.ViewModels;
 
 namespace TravelApp
 {
@@ -31,6 +34,7 @@ namespace TravelApp
             services.AddMvc();
             services.AddEntityFramework().AddSqlServer().AddDbContext<TripContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:TripsConnectionString"]));
             services.AddTransient<TripsSeedData>();
+            services.AddScoped<TripsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +59,11 @@ namespace TravelApp
             });
 
             seed.InsertSeedData();
+
+            Mapper.Initialize(Config =>
+            {
+                Config.CreateMap<Trip, TripViewModel>().ReverseMap();
+            });
         }
 
         // Entry point for the application.
