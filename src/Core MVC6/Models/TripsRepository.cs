@@ -8,7 +8,7 @@ namespace TravelApp.Models
 {
     public class TripsRepository
     {
-        private TripContext db;
+        private TripContext db { get; set; }
 
         public TripsRepository(TripContext context)
         {
@@ -32,6 +32,18 @@ namespace TravelApp.Models
             db.Trips.Add(trip);
             db.SaveChanges();
             return trip;
+        }
+
+        public void SaveTrip(Trip trip)
+        {
+            db.Add(trip);
+            db.SaveChanges();
+        }
+
+        public void AddStop(Stop stop)
+        {
+            db.Stops.Add(stop);
+            db.SaveChanges();
         }
     }
 }
