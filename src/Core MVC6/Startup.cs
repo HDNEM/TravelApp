@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
+﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +7,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Data.Entity;
 using TravelApp.Models;
 using AutoMapper;
+using TravelApp.Services;
 using Core_MVC6.Models;
 using Core_MVC6.ViewModels;
 
@@ -35,6 +32,7 @@ namespace TravelApp
             services.AddEntityFramework().AddSqlServer().AddDbContext<TripContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:TripsConnectionString"]));
             services.AddTransient<TripsSeedData>();
             services.AddScoped<TripsRepository>();
+            services.AddScoped<CoordinateService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
